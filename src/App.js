@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./assets/styles.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+import BandSection from "./components/BandSection/BandSection";
+import Navbar from './components/Navbar/Navbar'
+import TourSection from "./components/TourSection/TourSection";
+import ClassComponent from "./components/ClassComponent/ClassComponent";
+import ContentCard from "./components/ContentCard/ContentCard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <div className="row">
+          <div className="col-6 offset-3">
+            <ContentCard />
+          </div>
+        </div>
+      </div>
+      {/* <BandSection />
+      <TourSection />
+      <ClassComponent /> */}
+    </>
   );
 }
 
