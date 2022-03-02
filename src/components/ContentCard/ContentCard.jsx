@@ -10,26 +10,20 @@ import {
 import { FaRegThumbsUp } from "react-icons/fa";
 import newyork from "./newyork.jpeg";
 
-const username = "seto";
-const location = "BSD";
-let numberOfLikes = 13523;
-const caption =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi totam laboriosam culpa accusamus? Corrupti fugit libero alias facere eaque magni dolore maiores perspiciatis, ullam ipsam similique repellat, odit, architecto placeat officiis rem voluptatem fuga corporis tempora labore? Mollitia praesentium, eveniet maxime officia laudantium enim. Fugiat eum ut quasi mollitia tenetur, labore praesentium? Neque obcaecati sapiente quis hic. Fugiat vitae et error cumque enim magni, voluptatibus autem nesciunt quos aperiam laborum!";
-
-const ContentCard = () => {
+const ContentCard = (props) => {
   const likePost = (amount) => {
-    numberOfLikes += 1;
-    alert(`Liked post ${numberOfLikes}`);
+    props.numberOfLikes += 1;
+    alert(`Liked post ${props.numberOfLikes}`);
   };
 
   return (
-    <Card>
-      <CardBody>
+    <Card className="my-2">
+      <CardBody >
         <CardTitle tag="h5" className="fw-bold">
-          {username}
+          {props.username}
         </CardTitle>
         <CardSubtitle tag="h6" className="text-muted mb-4">
-          {location}
+          {props.location}
         </CardSubtitle>
 
         <img
@@ -40,13 +34,16 @@ const ContentCard = () => {
           src={newyork}
           alt="user's content"
         />
-
+        
+        
         <CardText tag="h6" className="fw-bold mt-3">
-          {numberOfLikes.toLocaleString()} likes
+          {props.numberOfLikes.toLocaleString()} likes
         </CardText>
         <CardText>
-          <span className="fw-bold">{username}</span>{" "}
-          {caption.length > 140 ? caption.slice(0, 140) + "..." : caption}
+          <span className="fw-bold">{props.username}</span>{" "}
+          {props.caption.length > 140
+            ? props.caption.slice(0, 140) + "..."
+            : props.caption}
         </CardText>
 
         <Button
