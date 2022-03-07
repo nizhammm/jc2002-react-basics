@@ -8,6 +8,7 @@ import ClassComponent from "./components/ClassComponent/ClassComponent";
 import ContentCard from "./components/ContentCard/ContentCard";
 import TodoItem from "./components/TodoItem/TodoItem";
 import { Button, Input } from 'reactstrap';
+import axios from 'axios'
 
 const data = [
   {
@@ -139,6 +140,13 @@ function App() {
     setTodoList(duplicateTodoArray)
   }
 
+  const fetchToDoList = () => {
+    axios.get("http://localhost:2000/todos")
+    .then((res) => {
+      console.log(res.data)
+    })
+  }
+
   return (
     <>
       {/* <Navbar /> */}
@@ -151,6 +159,7 @@ function App() {
           </div>
           <div className='col-2'>
             <Button onClick={addTodoItem} color='success'>Add Todo</Button>
+            <Button onClick={fetchToDoList} color='info'>Fetch Todo</Button>
           </div>
         </div>
         <div className="row">
