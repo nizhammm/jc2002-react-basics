@@ -1,12 +1,12 @@
-import member from './member.jpeg'
+import member from "./member.jpeg";
 
-const BandMemberCard = () => {
+const BandMemberCard = (props) => {
   return (
     <div className="band-member-card">
-      <p>Name</p>
+      <p>{props.fullName}</p>
       <img src={member} alt="" />
     </div>
-  )
-}
+  );
+};
 
-export default BandMemberCard
+export default BandMemberCard;
