@@ -1,72 +1,68 @@
-import { Box, Button, Center, Flex, Input, Text } from "@chakra-ui/react";
+import { Center, Flex, Text, Input, Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import counter_types from "../redux/reducers/counter/types";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "reactstrap";
 
 const CounterPage = () => {
+  const [inputValue, setInputValue] = useState("")
 
-  const [inputCounter, setInputCounter] = useState("")
   const countSelector = useSelector((state) => state.counter);
 
   const dispatch = useDispatch();
 
-  // Button Click
-  const changeCountValue = (dir) => {
-    if (dir === "increment") {
+  const inputHandler = (event) => {
+    const { value } = event.target
+
+    setInputValue(value)
+  }
+
+  const counterButton = (dir) => {
+    if (dir === "plus") {
       dispatch({
-        type: counter_types.INCREMENT_COUNTER,
+        type: "INCREMENT_COUNTER",
       });
-    } else if (dir === "decrement") {
+    } else if (dir === "minus") {
       dispatch({
-        type: counter_types.DECREMENT_COUNTER,
+        type: "DECREMENT_COUNTER",
       });
-    }
-    else if (dir === "reset") {
+    } else if (dir === "reset") {
       dispatch({
-        type: counter_types.RESET_COUNTER,
+        type: "RESET_COUNTER",
       });
+    } else if (dir === "set") {
+        dispatch({
+            type: "SET_COUNTER", payload: inputValue
+        })
     }
   };
 
-  // Button Click untuk ngeset
-  const clickToSet = () => {
-    const angka = parseInt(inputCounter)
-    dispatch({
-      type: counter_types.SET_COUNTER,
-      count: angka
-    });
-   }
-
-  // Input Handler
-  const inputHandler = (event) => {
-    const {value} = event.target
-
-    setInputCounter(value)
-  }
-
   return (
-    <Center>
-      <Box>
-      <Flex justifyContent={"center"} alignItems="center" marginTop="10">
-        <Button onClick={() => changeCountValue("decrement")} marginRight="4">
-          -
-        </Button>
-        <Text fontSize="2xl">{countSelector.count}</Text>
-        <Button onClick={() => changeCountValue("increment")} marginLeft="4">
-          +
-        </Button>
-      </Flex>
-
-      <Box marginTop={2} display={"flex"}>
-        <Input onChange={inputHandler}/>
-      </Box>
-      <Flex justifyContent={"center"}>
-        <Button onClick={clickToSet} marginRight={2}>Set Counter</Button>
-        <Button onClick={() => changeCountValue("reset")}>Reset</Button>
-
-      </Flex>
-      </Box>
-    </Center>
+    <>
+      <Center>
+        <Flex alignItems="center" margin="10">
+          <Button onClick={() => counterButton("minus")}>-</Button>
+          <Text marginX="4" fontSize="lg">
+            {countSelector.count}
+          </Text>
+          <Button onClick={() => counterButton("plus")}>+</Button>
+        </Flex>
+      </Center>
+      <Center>
+        <Box>
+          <Input onChange={inputHandler} width="sm" margin="2"></Input>
+          <Flex justifyContent="center">
+            <Box marginX="2">
+              <Button onClick={() => counterButton("set")}>Set Counter</Button>
+            </Box>
+            <Box marginX="2">
+              <Button onClick={() => counterButton("reset")}>
+                Reset Counter
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
+      </Center>
+    </>
   );
 };
 

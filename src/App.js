@@ -1,14 +1,17 @@
-import { useState } from 'react'
 import "./assets/styles.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import BandSection from "./components/BandSection/BandSection";
-import Navbar from './components/Navbar/Navbar'
-import TourSection from "./components/TourSection/TourSection";
-import ClassComponent from "./components/ClassComponent/ClassComponent";
-import ContentCard from "./components/ContentCard/ContentCard";
-import TodoItem from "./components/TodoItem/TodoItem";
-import { Button, Input } from 'reactstrap';
-import axios from 'axios'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import TodoPage from './pages/todo';
+import BandPage from "./pages/band";
+import Navbar from "./components/Navbar/Navbar";
+import TourPage from "./pages/tour";
+import HomePage from "./pages/home";
+import NotFoundPage from "./pages/404";
+import HalamanBandMember from "./pages/band-member";
+import ProductPage from "./pages/products";
+import UsersPage from "./pages/users";
+import LoginPage from "./pages/login";
+import CounterPage from "./pages/counter";
 
 const data = [
   {
